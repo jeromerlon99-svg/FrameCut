@@ -1,0 +1,132 @@
+FrameCut 1.2.1 / source-complete static runtime build
+123 checks passed against the newly compiled FFmpeg/x264/zlib engine.
+Fixtures are synthetic inputs locked by SHA-256. All original media assertions are retained.
+
+PASS CFR + Unicode path: 96 indexed frames, audio detected
+PASS CFR duration accurate
+PASS Exact CFR frame pixels #1
+PASS Exact CFR frame pixels #2
+PASS Exact CFR frame pixels #24
+PASS Exact CFR frame pixels #25
+PASS Exact CFR frame pixels #51
+PASS Exact CFR frame pixels #95
+PASS Exact CFR frame pixels #96
+PASS Real audio waveform extraction
+PASS Precise non-keyframe trim: 36 video frames + audio
+PASS Trimmed duration 1.500 seconds
+PASS Last-frame-only export, no audio stream
+PASS Two-clip concatenate preserves frame count and duration
+PASS VFR video / no audio detected
+PASS VFR uses per-frame timestamps, not average FPS
+PASS Exact VFR frame pixels #1
+PASS Exact VFR frame pixels #15
+PASS Exact VFR frame pixels #16
+PASS Exact VFR frame pixels #17
+PASS Exact VFR frame pixels #41
+PASS Exact VFR frame pixels #75
+PASS VFR precise trim keeps exactly 29 frames
+PASS Detached audio-only WAV pads to 2 seconds
+PASS Short detached audio padded with actual digital silence
+PASS Splitting after detached audio ends produces silent tail
+PASS Detached split with silent tail exports correctly
+PASS Project roundtrip: relative path + audio edits
+PASS Empty frame ranges rejected
+PASS Source overwrite prevented
+PASS Cancel leaves no partial output
+PASS Source audio delay preserved with leading silence
+ALL 32 CHECKS PASSED
+PASS A B C cuts retain 72 frames
+PASS Insertion-gap reorder produces C A B
+PASS Output time 1s points to source A
+PASS Frame step follows reordered adjacency
+PASS Reordered MP4 retains 3 seconds and 72 frames
+PASS Exported picture segment 1 is blue C
+PASS Exported picture segment 2 is red A
+PASS Exported picture segment 3 is green B
+PASS Original WAV is byte-identical after C A B reorder
+PASS MP4 audio decodes identically to original-order AAC baseline
+PASS Project restores continuous sound and stable clip identities
+PASS Removing picture shortens audio at output end
+PASS Picture longer than original sound has silent tail
+ALL 13 REORDER CHECKS PASSED
+PASS Default window fits work area
+PASS Export disabled without media
+PASS Demo imports 192 real frames
+PASS Picture-only editing with continuous original sound is default
+PASS Per-clip audio editing disabled while original sound is continuous
+PASS One-frame forward decodes correct frame
+PASS One-frame back decodes correct frame
+PASS Two picture cuts create persistent A B C clip cards
+PASS Picture cuts preserve every source frame
+PASS Card-drop handler reorders C A B
+PASS Reorder leaves continuous original sound unchanged
+PASS Undo reverses card reorder
+PASS Redo restores C A B
+PASS Output timeline start maps to reordered source frame 129
+PASS Output boundary maps to next clip A
+PASS Previous frame crosses reordered A-to-C boundary
+PASS Next frame crosses reordered C-to-A boundary
+PASS Source frame jump automatically selects matching clip B
+PASS Forward/back buttons operate on output card order
+PASS Move-back restores C A B
+PASS Master mute affects original track rather than video clips
+PASS Source-trimming view switches independently
+PASS Arrangement view switches back
+PASS C A B layout renders without desktop automation
+PASS Mark-in remains inclusive
+PASS Mark-out remains inclusive
+PASS Inspector split remains available
+PASS Undo split restores trimmed clip
+PASS Redo split restores parts
+PASS Alternate per-clip audio mode remains available
+PASS Alternate audio range applies
+PASS Edited project is exportable
+ALL 32 UI CHECKS PASSED
+PASS Three imported files form a 79-frame project
+PASS Portrait silent material detected
+PASS Virtual frame maps exactly to second source video
+PASS Mixed 24/30/25 fps export preserves all 79 frames
+PASS Mixed sizes normalize to first source canvas
+PASS Three video join has correct duration
+PASS Original-order segment A is red
+PASS Original-order segment B is blue
+PASS Original-order segment C is green
+PASS Portrait video uses black bars without stretching
+PASS Original audio A starts at 220 Hz
+PASS Silent source B contributes a full silent section
+PASS Original audio C follows silent source at 880 Hz
+PASS Picture reorder starts with green C
+PASS Picture reorder then red A
+PASS Picture reorder ends with blue B
+PASS Picture reorder leaves import-order original audio byte-identical
+PASS Optional linked audio follows C A B with silence for B
+PASS Multi-source project saves and resolves relative source paths
+PASS Undo snapshots copy source lists independently
+PASS Overwrite guard protects appended source videos
+PASS Clip trim cannot cross a source-file boundary
+PASS Exports leave no temporary filter files
+ALL 23 MULTI-VIDEO CHECKS PASSED
+PASS Add-video action available before project creation
+PASS Failed initial batch does not create a partial project
+PASS Multi-selection can create a project with a silent first source
+PASS Existing project has two edited picture clips
+PASS Two files append without replacing existing project
+PASS Existing source cuts stay exactly unchanged
+PASS First appended source selected for preview
+PASS New source uses its own local frame numbers
+PASS New original sound joins at edited project end, not unused source tail
+PASS Continuous audio preview maps appended C to correct source time
+PASS Appended portrait video can split at local frame 11
+PASS Appended green video can move before original footage
+PASS Picture reorder does not reorder source or sound assets
+PASS Undo append restores complete original project
+PASS Redo restores imports, cuts and cross-source order
+PASS Reordered source switch shows correct source and frame counter
+PASS Saved multi-video project reopens with all sources and sound sequence
+PASS Actual edited multi-project exports all 115 selected frames
+PASS Exported sound joins at edited 2.5s end: demo, silent B, then C
+PASS Failed multi-file import preserves the project atomically
+PASS Cancelled video addition preserves existing project
+PASS Multi-source arrangement renders without desktop automation
+PASS Version-1 single-video project migrates without losing clips
+ALL 23 MULTI-VIDEO UI CHECKS PASSED

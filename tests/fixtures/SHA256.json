@@ -1,0 +1,30 @@
+[
+  {
+    "name": "测试 source.mp4",
+    "sha256": "4317f4f92f306089066b677cee13e7793eb1fcbb71b04e894811a18930e9b114"
+  },
+  {
+    "name": "vfr.mkv",
+    "sha256": "5e93c6d22e3f17cca48b688f0393356917e7ef48c36eb4427e7b60fc4a1a1904"
+  },
+  {
+    "name": "offset.mkv",
+    "sha256": "b9dfb6eac16a7a458e0a6186bb26baea9382de3d4930013b731187ae3ca83db3"
+  },
+  {
+    "name": "color-chirp.mkv",
+    "sha256": "8f2234bef11f9f69780a011c94edc640422468aa93d0f3f38cf130b494ff6c5a"
+  },
+  {
+    "name": "红色 A.mp4",
+    "sha256": "c862454b45ae7159befc676fda4162ea4d5c7f1ac8db50b603077898e51b816a"
+  },
+  {
+    "name": "portrait-B.mp4",
+    "sha256": "b3f5b42322ac9da65bad7f47d6335fc89e224dbff6d7b43134851359a2aa9773"
+  },
+  {
+    "name": "green-C.mp4",
+    "sha256": "989e6cd7ed331bbc684fb53c6b0f02f60bec9efeeaa1fa0228b97610d53b5ad7"
+  }
+]

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">x64</Platform>
+    <ProjectGuid>{487DBB4A-AB50-4C86-80BB-D3E0B733806E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FrameCut</RootNamespace>
+    <AssemblyName>FrameCut</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <ApplicationIcon>FrameCut.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AppConfig>FrameCut.exe.config</AppConfig>
+    <CodePage>65001</CodePage>
+    <FileAlignment>512</FileAlignment>
+    <OutputPath>..\build\VisualStudio\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Core.cs" />
+    <Compile Include="MultiExport.cs" />
+    <Compile Include="SequenceTimeline.cs" />
+    <Compile Include="Timeline.cs" />
+    <EmbeddedResource Include="Main.xaml">
+      <LogicalName>Main.xaml</LogicalName>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="FrameCut.exe.config" />
+    <None Include="FrameCut.ico" />
+    <None Include="build.ps1" />
+    <Content Include="..\assets\demo.mp4">
+      <Link>示例视频.mp4</Link>
+      <TargetPath>示例视频.mp4</TargetPath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

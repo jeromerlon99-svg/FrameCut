@@ -1,0 +1,29 @@
+# Local builds, dependencies and exports
+/build/
+/dist/
+/engine/
+/third-party/engine/
+/tests/generated/
+**/bin/
+**/obj/
+**/.cache/
+*.exe
+*.dll
+*.pdb
+*.zip
+*.framecut
+*.tmp
+*.log
+
+# Developer-specific settings and credentials
+.vs/
+.vscode/
+*.user
+*.suo
+.env
+.env.*
+*.pfx
+*.p12
+*.key
+Thumbs.db
+.DS_Store

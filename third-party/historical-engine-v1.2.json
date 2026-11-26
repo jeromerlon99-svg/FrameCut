@@ -1,0 +1,59 @@
+{
+  "testedVersion": "n8.1.3-24-g92611900bb-20261025",
+  "originalArchive": "ffmpeg-n8.1-latest-win64-gpl-shared-8.1.zip",
+  "archiveSha256": "7d81fc863192026c85fee0205d400d2db3a5f41f079dbbd6eccd33b43b5369fc",
+  "requiredFeatures": [
+    "libx264",
+    "aac",
+    "PNG decoding/encoding",
+    "-/filter_complex",
+    "ffprobe frame timestamps"
+  ],
+  "files": [
+    {
+      "name": "avcodec-62.dll",
+      "size": 118878208,
+      "sha256": "0c85fe597ec63f13d48752ce180ab950e427e213d193db958dc8ae58a6b60658"
+    },
+    {
+      "name": "avdevice-62.dll",
+      "size": 4947456,
+      "sha256": "19e6f6902b7a2e2fa5b97ad57ba3342bfa98b0ad966d0b99f351fd85ab54df32"
+    },
+    {
+      "name": "avfilter-11.dll",
+      "size": 37359616,
+      "sha256": "830fce3a53c7ee3d4cf36449c0db79e4a1e149e47bc45a0ce5c119e481a9461a"
+    },
+    {
+      "name": "avformat-62.dll",
+      "size": 22974464,
+      "sha256": "d933673575c34745f202081053428411a7ed967349cdedabab99e4096a2aa566"
+    },
+    {
+      "name": "avutil-60.dll",
+      "size": 3014144,
+      "sha256": "a7c88a85e855c04f8a222d6293210358faf5a385d8ab52341ed5a280cb64ee20"
+    },
+    {
+      "name": "ffmpeg.exe",
+      "size": 540672,
+      "sha256": "f7768f45764a9bd357ba75c782897563e073de2f0b5ea31249edcb346da17365"
+    },
+    {
+      "name": "ffprobe.exe",
+      "size": 226816,
+      "sha256": "ce3ec47cbc13f00c4603e1fa7111b6c187d0ae431f287db9d5aa42cc0e8cb655"
+    },
+    {
+      "name": "swresample-6.dll",
+      "size": 734720,
+      "sha256": "e2d11804ead978d6e11700ae97e99c3c5ccc5c154807baaff0b12dbe5dd553aa"
+    },
+    {
+      "name": "swscale-9.dll",
+      "size": 12900864,
+      "sha256": "8d1e6a479462e4a64954d674c6bc36ab17fab2649fb423a2271666cfc4091ad1"
+    }
+  ]
+}

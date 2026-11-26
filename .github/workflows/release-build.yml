@@ -1,0 +1,33 @@
+name: Build portable package with matching sources
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release-files:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compile fixed media sources
+        shell: powershell
+        run: .\scripts\build-media-engine.ps1 -WorkDirectory C:\FrameCutBuild
+      - name: Compile FrameCut
+        shell: powershell
+        run: .\scripts\build.ps1 -EngineDirectory C:\FrameCutBuild\engine
+      - name: Run actual media and application checks
+        shell: powershell
+        run: .\tests\run-tests.ps1 -AppDirectory .\build\FrameCut
+      - name: Package binaries with full corresponding source
+        shell: powershell
+        run: .\scripts\package-release.ps1 -EngineDirectory C:\FrameCutBuild\engine
+      - name: Upload complete release files
+        uses: actions/upload-artifact@v4
+        with:
+          name: FrameCut-portable-and-source
+          path: |
+            dist/*.zip
+            dist/SHA256SUMS.txt
+          if-no-files-found: error

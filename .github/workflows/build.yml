@@ -1,0 +1,30 @@
+name: Windows build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compile application without external media binaries
+        shell: powershell
+        run: .\scripts\build.ps1
+      - name: Verify compiled files and embedded demo
+        shell: powershell
+        run: |
+          $required = @('build/FrameCut/FrameCut.exe', 'build/FrameCut/FrameCut.exe.config', 'build/FrameCut/示例视频.mp4')
+          foreach ($file in $required) {
+            if (!(Test-Path -LiteralPath $file)) { throw "Missing build output: $file" }
+          }
+          Write-Output 'Compilation completed. Full media tests require a separately supplied FFmpeg engine.'
