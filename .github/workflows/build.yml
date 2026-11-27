@@ -21,7 +21,7 @@ jobs:
         shell: powershell
         run: .\scripts\build.ps1
       - name: Verify compiled files and embedded demo
-        shell: powershell
+        shell: pwsh
         run: |
           $required = @('build/FrameCut/FrameCut.exe', 'build/FrameCut/FrameCut.exe.config', 'build/FrameCut/示例视频.mp4')
           foreach ($file in $required) {
