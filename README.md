@@ -1,83 +1,86 @@
-# 帧剪 FrameCut
+# FrameCut
 
-免安装的 Windows 视频剪辑工具，使用 C#、WPF 和本机 FFmpeg。当前版本 **1.2.1**。
+A portable Windows video editor built with C#, WPF, and local FFmpeg tools. Current version: **1.2.1**.
 
-![FrameCut 多视频编排界面](docs/screenshot.png)
+![FrameCut interface with multiple video clips](docs/screenshot.png)
 
-## 功能
+## Features
 
-- 多个视频追加到同一工程，保留已有裁剪和顺序。
-- 按实际帧时间前后逐帧查看，设置入点、出点，保存原尺寸 PNG。
-- 将画轨切成 A、B、C 等片段，拖动重排，预览并拼接导出。
-- 默认只重排画面，声音保持连续；也可让音频随片段移动，或独立调整音频范围。
-- 导出 MP4、纯画面、M4A / WAV，或分别导出音画文件。
-- 保存工程、撤销重做，支持读取早期单视频工程。
+- Add multiple videos to one project while preserving existing trims and clip order.
+- Step forward and backward through actual source frames, set in and out points, and save full-resolution PNG images.
+- Split the video track into clips, drag to reorder them, preview the sequence, and export the combined result.
+- Keep the original audio continuous while reordering video by default. Audio can also follow the clips or use an independently selected range.
+- Export MP4, video without audio, M4A / WAV, or separate video and audio files.
+- Save projects, undo and redo edits, and open earlier single-video projects.
 
-详细操作见 [使用说明](docs/USER-GUIDE.zh-CN.txt)。
+See the [user guide](docs/USER-GUIDE.zh-CN.txt) for detailed instructions. The application interface and user guide are currently in Simplified Chinese.
 
-## 环境与依赖
+## Download
 
-- Windows 10 / 11，64 位；.NET Framework 4.8。
-- FFmpeg 与 ffprobe。程序通过独立本地进程调用这些工具。
-- 无 NuGet、Python、Node.js 或在线服务依赖。
+Download the portable application and complete source package from [Releases](https://github.com/jeromerlon99-svg/FrameCut/releases). Extract `FrameCut-Portable-v1.2.1.zip` and run `FrameCut.exe`; no installation is required.
 
-**仓库已含 FFmpeg、x264 和 zlib 的完整固定源码及构建脚本。** 二进制只放在绿色发布包；该运行包的 `sources/` 也包含完整对应源码。见 [依赖说明](docs/DEPENDENCIES.md)。
+## Requirements and dependencies
 
-## 编译
+- Windows 10 / 11, 64-bit, with .NET Framework 4.8.
+- FFmpeg and ffprobe, invoked as separate local processes.
+- No NuGet, Python, Node.js, or online services are required to run the application.
 
-在仓库根目录的 PowerShell 中执行：
+**This repository includes the complete source archives for pinned versions of FFmpeg, x264, and zlib, along with build scripts.** Their binaries are distributed in the portable release package, whose `sources/` directory also contains the complete corresponding source. See the [dependency notes](docs/DEPENDENCIES.md).
+
+## Build
+
+Run the following command in PowerShell from the repository root:
 
 ```powershell
 .\scripts\build.ps1
 ```
 
-输出为 `build/FrameCut/FrameCut.exe`。脚本使用 Windows 自带的 Framework C# 编译器，包含界面、图标和程序配置，并复制仓库中的小型示例视频。
+The output is `build/FrameCut/FrameCut.exe`. The script uses the .NET Framework C# compiler included with Windows, embeds the interface and icon, includes the application configuration, and copies the small demo video supplied in the repository.
 
-已有旧版绿色包时，可把它的 `engine` 文件夹作为依赖：
+To include the media tools, supply an `engine` directory from a portable release:
 
 ```powershell
 .\scripts\build.ps1 -EngineDirectory 'D:\Tools\FrameCut\engine'
 ```
 
-然后运行 `build/FrameCut/FrameCut.exe`。构建脚本保留 FFmpeg 许可证，记录实际使用的依赖版本。
+Then run `build/FrameCut/FrameCut.exe`. The build script preserves the FFmpeg license files and records the dependency versions actually used.
 
-也可在 Visual Studio 中打开 `FrameCut.sln`，安装 .NET 桌面开发工作负载和 .NET Framework 4.8 Developer Pack 后选择 Release / x64 编译。`Main.xaml` 按嵌入资源加载，不使用自动生成的 WPF 入口。
+Alternatively, open `FrameCut.sln` in Visual Studio, install the .NET desktop development workload and .NET Framework 4.8 Developer Pack, and build with the Release / x64 configuration. `Main.xaml` is loaded as an embedded resource; the application uses its own entry point rather than an automatically generated WPF entry point.
 
-## 验证
+## Verification
 
-构建时准备好 FFmpeg 后，在 Windows 桌面会话中执行：
+After building with an FFmpeg engine, run the following command in a Windows desktop session:
 
 ```powershell
 .\tests\run-tests.ps1 -AppDirectory '.\build\FrameCut'
 ```
 
-测试使用附带并锁定 SHA-256 的合成视频，检查实际导出的画面、帧数、声音顺序、静音补齐、多素材导入、工程保存恢复和取消行为。界面检查在程序自己的屏外窗口中运行，无需鼠标键盘自动化。
+The checks use included synthetic video fixtures with pinned SHA-256 hashes. They verify exported frames, frame counts, audio order, silence padding, multiple-source imports, project save and restore, and cancellation. Interface checks run in the application's own off-screen windows without mouse or keyboard automation.
 
-1.2.1 版已用新的源码构建组件重新通过 123 项检查，记录见 [验证记录](docs/verification-v1.2.1.txt)。基础 GitHub 工作流仅编译应用；另有手动完整工作流，从固定源码构建组件、运行媒体检查并生成带源码的绿色包。
+Version 1.2.1 passed all 123 checks using the new media tools built from source. See the [verification record](docs/verification-v1.2.1.txt). The basic GitHub workflow compiles the application and verifies the output files. A separate manual workflow builds the media tools from pinned source, runs the media checks, and creates a portable package with corresponding source.
 
-## 项目结构
+## Project structure
 
 ```text
-src/          应用代码、界面、图标、编译脚本和 Visual Studio 工程
-tests/        实际媒体处理与应用内部界面检查
-assets/       项目专用示例视频
-scripts/      从仓库构建并准备本地运行目录
-docs/         使用、依赖、发布和验证说明
-third-party/  FFmpeg 许可、已验证组件版本及散列记录
-.github/      仅编译的 Windows 工作流
+src/          Application code, interface, icon, build script, and Visual Studio project
+tests/        Actual media processing and in-process interface checks
+assets/       Demo video created for this project
+scripts/      Application, media engine, and release packaging scripts
+docs/         Usage, dependency, release, and verification documentation
+third-party/  Pinned media source archives, licenses, build records, and hashes
+.github/      Windows application build and complete release workflows
 ```
 
-## 当前范围
+## Scope and limitations
 
-支持 SDR 视频的精确剪辑和多素材拼接，不含字幕、转场、滤镜、叠画或多层合成。每个素材使用第一条非封面画面轨和第一条音轨。多视频输出以首个素材的画幅为准，其余视频保持比例并补黑边。工程记录路径，不嵌入原视频；最多 200 个素材和 200 个画面片段。
+FrameCut supports precise SDR video editing and joining multiple sources. Subtitles, transitions, filters, overlays, and multilayer compositing are not included. For each source, the application uses the first video stream that is not cover art and the first audio stream. The first source determines the output frame dimensions; other sources retain their aspect ratio and are padded with black borders as needed. Projects store file paths rather than embedding the original videos, with a limit of 200 sources and 200 video clips.
 
-首次导入需扫描帧索引。某些格式连续播放需要生成本地兼容预览。逐帧查看与导出始终读取原文件。源码中的若干控制器方法较集中，后续可继续拆分；当前整理保留了已发布 1.2 版的应用代码。
+The first import scans the source to build a frame index. Continuous playback of some formats requires a locally generated compatible preview. Frame stepping and exports always read the original files. Some controller methods remain large and could be split up in future refactoring; the repository preserves the application implementation released in version 1.2.
 
-## 开源与发布
+## Open source and releases
 
-FrameCut 应用源码沿用 [MIT 许可证](LICENSE)。外部 FFmpeg 构建有单独的许可要求，见 [第三方说明](THIRD-PARTY.md)。根许可证不覆盖外部二进制组件。
+The FrameCut application source is available under the [MIT license](LICENSE). The external FFmpeg build has separate license requirements; see the [third-party notices](THIRD-PARTY.md). The root license does not cover external binary components.
 
-对应源码、依赖、许可和构建材料已归档在仓库中。新的绿色发布包会自动内嵌完整同版源码 ZIP，可以把运行包和源码包一起放到 Release。见 [发布说明](docs/PUBLISHING.md)。
+Corresponding source, dependencies, licenses, and build materials are archived in this repository. The packaging script automatically embeds a complete source ZIP for the same version in each new portable package. The portable and source packages can be published together as release assets. See the [publishing notes](docs/PUBLISHING.md).
 
-测试素材可由 tests/generate-fixtures.ps1 的完整配方重新生成；需使用启用了 lavfi 输入的开发用 FFmpeg。运行时不包含设备输入，正常剪辑和媒体测试不依赖该生成器。
-
+Test fixtures can be regenerated using the complete recipes in `tests/generate-fixtures.ps1`. This requires a development FFmpeg build with the `lavfi` input enabled. The runtime build excludes device inputs; normal editing and media checks do not depend on the fixture generator.
